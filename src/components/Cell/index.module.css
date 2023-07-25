@@ -1,0 +1,21 @@
+.cell {
+  width: var(--cell-width);
+  height: var(--cell-height);
+}
+
+.blue0 {
+  background-color: var(--color-blue-0);
+}
+
+.blue100 {
+  background-color: var(--color-blue-100);
+}
+.blue200 {
+  background-color: var(--color-blue-200);
+}
+.blue300 {
+  background-color: var(--color-blue-300);
+}
+.blue400 {
+  background-color: var(--color-blue-400);
+}
