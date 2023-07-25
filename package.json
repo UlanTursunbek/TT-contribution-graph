@@ -18,6 +18,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@radix-ui/react-tooltip": "^1.0.6",
     "@storybook/addon-essentials": "^7.0.26",
     "@storybook/addon-interactions": "^7.0.26",
     "@storybook/addon-links": "^7.0.26",
@@ -33,6 +34,8 @@
     "@typescript-eslint/parser": "^5.61.0",
     "@vitejs/plugin-react": "^4.0.1",
     "@vitest/coverage-v8": "^0.33.0",
+    "clsx": "^2.0.0",
+    "dayjs": "^1.11.9",
     "eslint": "^8.44.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-import": "^2.27.5",
@@ -48,6 +51,7 @@
     "storybook": "^7.0.26",
     "typescript": "^5.0.2",
     "vite": "~4.3.9",
+    "vite-tsconfig-paths": "^4.2.0",
     "vitest": "^0.33.0"
   }
 }
