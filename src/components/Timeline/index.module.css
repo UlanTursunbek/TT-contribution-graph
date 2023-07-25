@@ -1,0 +1,27 @@
+.timeline {
+}
+
+.timelineMonths {
+  display: flex;
+  padding-left: 30px;
+  gap: 2px;
+}
+
+.body {
+  display: flex;
+}
+
+.weekdays {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-right: 5px;
+}
+
+.cells {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 117px;
+  gap: 2px;
+}
