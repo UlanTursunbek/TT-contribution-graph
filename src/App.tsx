@@ -1,37 +1,55 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import dayjs from 'dayjs'
 
-import { Button } from 'components/Button'
+import { Timeline } from 'components/Timeline'
 
-import viteLogo from '../public/vite.svg'
+const CUSTOM_URL = 'https://dpg.gg/test/calendar.json'
 
-import reactLogo from './assets/react.svg'
+interface ApiData {
+  [key: string]: number
+}
 
-import './App.css'
+const fetchData = async (): Promise<ApiData | null> => {
+  try {
+    const response = await fetch(CUSTOM_URL)
+    if (!response.ok) {
+      throw new Error('Network response was not ok')
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    const data = await response.json()
+
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+    return data
+  } catch (error) {
+    console.error('Error fetching data:', error)
+    return null
+  }
+}
 
 function App() {
-  const [count, setCount] = useState(0)
+  const startDate = dayjs().subtract(365, 'days')
+  const dateRange = [startDate, dayjs()]
 
-  return (
-    <>
-      <div>
-        <Button>wer</Button>
-        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vitetest</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
-    </>
-  )
+  const [dataFromApi, setDataDataFromApi] = useState<ApiData | null>(null)
+
+  useEffect(() => {
+    const fetchDataAsync = async () => {
+      const result = await fetchData()
+      setDataDataFromApi(result)
+    }
+
+    void fetchDataAsync()
+  }, [])
+
+  const dataArray =
+    dataFromApi &&
+    Object.entries(dataFromApi).map(([date, value]) => ({
+      date,
+      value,
+    }))
+
+  return <>{dataArray ? <Timeline range={dateRange} data={dataArray} /> : <div>loading...</div>}</>
 }
 
 export default App
